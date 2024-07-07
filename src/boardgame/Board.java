@@ -13,6 +13,11 @@ public class Board {
     pieces = new Piece[rows][column];
   }
 
+  //methods
+  public Piece piece(int row, int column) {
+    return pieces[row][column];
+  }
+
   //getters and setters
   public int getRows() {
     return rows;
