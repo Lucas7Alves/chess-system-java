@@ -18,6 +18,12 @@ public class Board {
     return pieces[row][column];
   }
 
+  public void placePice(Piece piece, Position position) {
+    pieces[position.getRow()][position.getColumn()] = piece;
+    piece.position = position;
+  }
+
+
   //getters and setters
   public int getRows() {
     return rows;
