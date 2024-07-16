@@ -1,4 +1,5 @@
 package application;
+
 import chess.Color;
 
 import java.util.Arrays;
@@ -54,18 +55,24 @@ public class UI {
     printCapturedPieces(captured);
     System.out.println();
     System.out.println("Turn: " + chessMatch.getTurn());
-    System.out.println("Current player: " + chessMatch.getCurrentPlayer());
-
-    if (chessMatch.getCheck()) {
-      System.out.println("CHECK!");
+    if (!chessMatch.getCheckMate()) {
+      System.out.println("Current player: " + chessMatch.getCurrentPlayer());
+      System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+      if (chessMatch.getCheck()) {
+        System.out.println("CHECK!");
+      }
+    } else {
+      System.out.println("CHECKMATE! ");
+      System.out.println("Winner: " + chessMatch.getCurrentPlayer());
     }
+
   }
 
   public static void printBoard(ChessPiece[][] pieces) {
     for (int i = 0; i < pieces.length; i++) {
       System.out.print((8 - i) + " ");
       for (int j = 0; j < pieces.length; j++) {
-          printPieces(pieces[i][j], false);
+        printPieces(pieces[i][j], false);
       }
       System.out.println();
     }
@@ -76,7 +83,7 @@ public class UI {
     for (int i = 0; i < pieces.length; i++) {
       System.out.print((8 - i) + " ");
       for (int j = 0; j < pieces.length; j++) {
-          printPieces(pieces[i][j], possibleMoves[i][j]);
+        printPieces(pieces[i][j], possibleMoves[i][j]);
       }
       System.out.println();
     }
@@ -89,16 +96,14 @@ public class UI {
     }
     if (piece == null) {
       System.out.print("-" + ANSI_RESET);
-  }
-  else {
+    } else {
       if (piece.getColor() == Color.WHITE) {
-          System.out.print(ANSI_WHITE + piece + ANSI_RESET);
+        System.out.print(ANSI_WHITE + piece + ANSI_RESET);
+      } else {
+        System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
       }
-      else {
-          System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
-      }
-  }
-  System.out.print(" ");
+    }
+    System.out.print(" ");
   }
 
   private static void printCapturedPieces(List<ChessPiece> captured) {
