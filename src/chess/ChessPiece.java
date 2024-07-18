@@ -24,11 +24,11 @@ public abstract class ChessPiece extends Piece {
     return ChessPosition.fromPosition(position);
   }
 
-  protected int increseMoveCount() {
+  protected int increaseMoveCount() {
     return moveCount++;
   }
 
-  protected int decreseMoveCount() {
+  protected int decreaseMoveCount() {
     return moveCount--;
   }
 
